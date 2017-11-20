@@ -10,12 +10,27 @@
 			<p class="lead">
 				{{ $post->body }}
 			</p>
+
+
+		<div class="tags">
+			@foreach($post->tags as $tag)
+				<span class="label label-default">{{ $tag->name }}</span>
+			@endforeach
 		</div>
+
+		</div>
+
+
 		<div class="col-md-4">
 			<div class="well">
 				<dl class="dl-horizontal">
 					<label>Url:</label>
 					<p><a href="{{ url('blog/'.$post->slug) }}">{{ url('blog/'.$post->slug) }}</a></p>
+				</dl>
+
+				<dl class="dl-horizontal">
+					<label>Category:</label>
+					<p>{{ $post->category->name }}</p>
 				</dl>
 
 				<dl class="dl-horizontal">

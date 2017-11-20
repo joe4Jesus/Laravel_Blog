@@ -2,6 +2,11 @@
 
 @section('title', ' | Edit Post')
 
+@section('stylesheet')
+    {!! Html::style('css/select2.min.css') !!}
+@endsection
+
+
 @section('content')
 	<div class="row">
 		{!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
@@ -11,6 +16,12 @@
 
 			{{ Form::label('slug', 'Url:', ['class'=>'margin-top']) }}
 			{{ Form::text('slug', null, ['class' => 'form-control input-lg', 'required', 'minlength'=>'5', 'maxlength'=>'255']) }}
+
+			{{ Form::label('category_id', 'Category:', ['class'=>'margin-top']) }}
+			{{ Form::select('category_id', $categories, null, ['class'=>'form-control']) }}
+
+            {{ Form::label('tags', 'Tags:', ['class' => 'margin-top']) }}
+ 			{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple']) }}
 
 			{{ Form::label('body', 'Body', ['class' => 'margin-top'])}}
 			{{ Form::textarea('body', null, ['class' => 'form-control', 'required']) }}
@@ -37,5 +48,16 @@
 		</div>
 		{!! Form::close() !!}
 	</div>
+
+@endsection
+
+@section('script')
+    {!! Html::script('js/select2.min.js') !!}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('.select2-multi').select2();
+        });
+    </script>
 
 @endsection

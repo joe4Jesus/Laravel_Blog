@@ -18,11 +18,11 @@
         @include('partials._footer')
         </div>
 
-        @yield('script')
-
     </body>
     <!-- Scripts -->
     {!! Html::script('js/jquery.min.js') !!}
     {!! Html::script('js/bootstrap.min.js') !!}
+
+    @yield('script')
 
 </html>
