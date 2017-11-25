@@ -4,6 +4,18 @@
 
 @section('stylesheet')
     {!! Html::style('css/select2.min.css') !!}
+    <!-- <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    Html::script('js/tinymce/jquery.tinymce.min.js')-->
+    {!! Html::script('js/tinymce/tinymce.min.js') !!}
+
+    <script>
+        tinymce.init({ 
+            selector:'textarea', 
+            plugins: 'link code',
+            menubar: false,
+        });
+    </script>
+
 @endsection
 
 @section('content')
@@ -13,7 +25,7 @@
 			<h1>Create New Post</h1>
 			<hr>
 
-			{!! Form::open(['route' => 'posts.store']) !!}
+			{!! Form::open(['route' => 'posts.store', 'files' => true]) !!}
     			{{ Form::label('title', 'Title: ') }}
     			{{ Form::text('title', null, array('class' => 'form-control', 'required', 'maxlength'=>'255')) }}
 
@@ -33,6 +45,9 @@
                         <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
                     @endforeach
                 </select>
+
+                {{ Form::label('featured_image', 'Upload Featured Image:') }}
+                {{ Form::file('featured_image') }}
 
     			{{ Form::label('body', 'Post Body: ') }}
     			{{ Form::textarea('body', null, array('class' => 'form-control')) }}

@@ -16,7 +16,7 @@
         @foreach ($posts as $post)
         <div class="post well">
             <h2>{{ $post->title }}</h2>
-            <p>{{substr($post->body, 0, 200)}}{{strlen($post->body) > 200 ? "...." : "" }}</p>
+            <p>{{ substr(strip_tags($post->body), 0, 200) }}{{strlen(strip_tags($post->body)) > 200 ? "...." : "" }}</p>
             <p>{{ date('M j, Y', strtotime($post->created_at)) }}</p>
             <a class="btn btn-primary" href="{{ route('blog.single', $post->slug) }}">Read More.....</a>
         </div>
